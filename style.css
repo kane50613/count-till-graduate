@@ -9,6 +9,7 @@ html, body {
     margin: 0;
     height: 100%;
     font-family: 'Noto Sans TC', sans-serif;
+    -webkit-font-smoothing: antialiased;
 }
 
 #app, main {
@@ -16,11 +17,11 @@ html, body {
 }
 
 h1 {
-    font-size: 6rem;
+    font-size: 6vw;
 }
 
 .counter--container span {
-    font-size: 4rem;
+    font-size: 5.5vw;
     font-family: "JetBrains Mono", "Noto Sans TC", sans-serif;
     font-weight: 600;
 }
