@@ -1,0 +1,75 @@
+<html lang="zh-Hant-Tw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>倒數直到我畢業</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@600&family=Noto+Sans+TC:wght@500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<div id="app">
+    <main>
+        <h1>倒數直到我畢業</h1>
+        <div class="counter--container">
+            <span>
+                {{ day.toString().padStart(3, '0') }} 天
+            </span>
+            <span>
+                {{ hour.toString().padStart(2, '0') }} 小時
+            </span>
+            <span>
+                {{ minute.toString().padStart(2, '0') }} 分鐘
+            </span>
+            <span>
+                {{ second.toString().padStart(2, '0') }} 秒
+            </span>
+        </div>
+    </main>
+</div>
+
+<link rel="stylesheet" href="style.css">
+<script src="vue.prod.js"></script>
+<script>
+    let app = Vue.createApp({
+        data() {
+			return {
+				day: 0,
+                hour: 0,
+                minute: 0,
+                second: 0,
+            }
+        },
+        mounted() {
+			this.update()
+			setInterval(this.update, 1000)
+        },
+        methods: {
+			update() {
+				/**
+				 * the date we'll graduate
+				 * @type {Date}
+				 */
+				const targetDate = new Date("2023-06-10T17:10:00+08:00")
+
+				let estimate = Math.floor((targetDate - new Date()) / 1000)
+
+				this.day = Math.floor(estimate / 86400)
+				estimate -= this.day * 86400
+
+				this.hour = Math.floor(estimate / 3600)
+				estimate -= this.hour * 3600
+
+				this.minute = Math.floor(estimate / 60)
+				estimate -= this.minute * 60
+
+				this.second = estimate
+            }
+        }
+    }).mount("#app")
+</script>
+</body>
+</html>
